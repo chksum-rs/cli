@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed wrong link in `CHANGELOG.md`.
 
+### Changed
+
+- Changed `cargo tarpaulin` command to use `--engine llvm` in GitHub Actions.
+
 ## [0.2.0] - 2023-08-13
 
 ### Added
