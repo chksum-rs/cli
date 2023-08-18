@@ -1,9 +1,36 @@
+use std::fmt::{self, Display, Formatter};
 use std::io::{self, Write};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use chksum::hash::Digest;
 use chksum::Result;
 use exitcode::{IOERR as EXITCODE_IOERR, OK as EXITCODE_OK};
+
+#[derive(Clone, Debug)]
+pub enum Target {
+    Path(PathBuf),
+    Stdin,
+}
+
+impl Display for Target {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Path(path) => write!(f, "{}", path.display()),
+            Self::Stdin => write!(f, "<stdin>"),
+        }
+    }
+}
+
+impl<T> From<T> for Target
+where
+    T: AsRef<Path>,
+{
+    #[inline]
+    fn from(value: T) -> Self {
+        let value = value.as_ref();
+        Self::Path(value.to_path_buf())
+    }
+}
 
 #[derive(Debug, clap::Parser)]
 #[command(author, version, about, long_about = None)]
@@ -80,7 +107,7 @@ pub struct Options {
 
 /// Prints result to stdout or stderr.
 #[inline]
-pub fn print_result<T, U, V>(stdout: &mut T, stderr: &mut U, target: String, result: Result<V>) -> io::Result<()>
+pub fn print_result<T, U, V>(stdout: &mut T, stderr: &mut U, target: Target, result: Result<V>) -> io::Result<()>
 where
     T: Write,
     U: Write,

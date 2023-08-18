@@ -6,7 +6,7 @@ use std::{process, thread};
 use anyhow::Result;
 use chksum::hash::{MD5, SHA1, SHA2_224, SHA2_256, SHA2_384, SHA2_512};
 use chksum::{chksum, Chksum, Error};
-use chksum_cli::{exitcode, print_result, Args, Command, Options, Subcommand};
+use chksum_cli::{exitcode, print_result, Args, Command, Options, Subcommand, Target};
 use clap::Parser;
 use exitcode::{OK as EXITCODE_OK, USAGE as EXITCODE_USAGE};
 use rayon::prelude::{IntoParallelRefIterator, ParallelIterator};
@@ -41,7 +41,7 @@ where
         let handle = stdin().lock();
         let result = chksum::<T, _>(handle);
         let rc = exitcode(&result);
-        let pair = ("<stdin>".to_string(), result);
+        let pair = (Target::Stdin, result);
         tx.send(pair).expect("Cannot send result to printer thread");
         rc
     } else {
@@ -50,7 +50,7 @@ where
             .map(|path| {
                 let result = chksum::<T, _>(path);
                 let rc = exitcode(&result);
-                let pair = (path.display().to_string(), result);
+                let pair = (path.into(), result);
                 tx.send(pair).expect("Cannot send result to printer thread");
                 rc
             })
