@@ -1,4 +1,3 @@
-use std::fmt::Debug;
 use std::io::{self, Write};
 use std::path::PathBuf;
 
