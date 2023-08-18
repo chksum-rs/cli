@@ -4,7 +4,7 @@
 [![crates.io](https://img.shields.io/crates/v/chksum-cli?style=flat-square&logo=rust "crates.io")](https://crates.io/crates/chksum-cli)
 [![Coverage](https://img.shields.io/codecov/c/gh/ferric-bytes/chksum-cli?style=flat-square&logo=codecov "Coverage")](https://app.codecov.io/gh/ferric-bytes/chksum-cli)
 [![MSRV](https://img.shields.io/badge/MSRV-1.66.0-informational?style=flat-square "MSRV")](https://github.com/ferric-bytes/chksum-cli/blob/master/Cargo.toml)
-[![deps.rs](https://deps.rs/crate/chksum-cli/0.2.0/status.svg?style=flat-square "deps.rs")](https://deps.rs/crate/chksum-cli/0.2.0)
+[![deps.rs](https://deps.rs/crate/chksum-cli/0.3.0/status.svg?style=flat-square "deps.rs")](https://deps.rs/crate/chksum-cli/0.3.0)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg?style=flat-square "unsafe forbidden")](https://github.com/rust-secure-code/safety-dance)
 [![LICENSE](https://img.shields.io/github/license/ferric-bytes/chksum-cli?style=flat-square "LICENSE")](https://github.com/ferric-bytes/chksum-cli/blob/master/LICENSE)
 
