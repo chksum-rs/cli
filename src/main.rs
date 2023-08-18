@@ -6,6 +6,8 @@ use std::{process, thread};
 use anyhow::Result;
 use chksum::hash::{MD5, SHA1, SHA2_224, SHA2_256, SHA2_384, SHA2_512};
 use chksum::{chksum, Chksum, Error};
+#[cfg(feature = "color")]
+use chksum_cli::Color;
 use chksum_cli::{exitcode, print_result, Args, Command, Options, Subcommand, Target};
 use clap::Parser;
 use exitcode::{OK as EXITCODE_OK, USAGE as EXITCODE_USAGE};
@@ -71,6 +73,13 @@ fn main() -> Result<()> {
         let _ = error.print();
         exit(EXITCODE_USAGE);
     });
+
+    #[cfg(feature = "color")]
+    match command.color {
+        Color::Always => colored::control::set_override(true),
+        Color::Auto => colored::control::unset_override(),
+        Color::Never => colored::control::set_override(false),
+    }
 
     let rc = match command.subcommand {
         Subcommand::MD5 { args, options } => subcommand::<MD5>(&args, &options),

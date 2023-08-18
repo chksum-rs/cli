@@ -1,11 +1,18 @@
 #![forbid(unsafe_code)]
 
+#[cfg(feature = "color")]
+mod color;
+
 use std::fmt::{self, Display, Formatter};
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 
 use chksum::hash::Digest;
 use chksum::Result;
+#[cfg(feature = "color")]
+pub use color::Color;
+#[cfg(feature = "color")]
+use colored::Colorize;
 use exitcode::{IOERR as EXITCODE_IOERR, OK as EXITCODE_OK};
 
 #[derive(Clone, Debug)]
@@ -39,6 +46,10 @@ where
 pub struct Command {
     #[command(subcommand)]
     pub subcommand: Subcommand,
+    /// Show colored output.
+    #[arg(value_enum, short, long, default_value_t = Color::Auto, global = true)]
+    #[cfg(feature = "color")]
+    pub color: Color,
 }
 
 #[derive(Debug, clap::Subcommand)]
@@ -119,7 +130,10 @@ where
         Ok(digest) => writeln!(stdout, "{target}: {digest:x}"),
         Err(error) => {
             let error = error.to_string().to_lowercase();
-            writeln!(stderr, "{target}: {error}")
+            let error = format!("{target}: {error}");
+            #[cfg(feature = "color")]
+            let error = error.red();
+            writeln!(stderr, "{error}")
         },
     }
 }

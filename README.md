@@ -30,6 +30,7 @@ chksum sha2-224 dir/
 
 - Written in pure Rust
 - No unsafe code
+- Configurable via Cargo features
 - Multithread
 
 ## Installation
@@ -46,7 +47,7 @@ cargo install chksum-cli
 $ chksum help
 A simple checksum calculator.
 
-Usage: chksum <COMMAND>
+Usage: chksum [OPTIONS] <COMMAND>
 
 Commands:
   md5       Calculate MD5 digest
@@ -58,8 +59,9 @@ Commands:
   help      Print this message or the help of the given subcommand(s)
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+  -c, --color <COLOR>  Show colored output [default: auto] [possible values: always, auto, never]
+  -h, --help           Print help
+  -V, --version        Print version
 ```
 
 ```shell
@@ -72,8 +74,9 @@ Arguments:
   <PATH>...  Path to file or directory
 
 Options:
-  -s, --stdin  Calculate digest from stdin
-  -h, --help   Print help
+  -s, --stdin          Calculate digest from stdin
+  -c, --color <COLOR>  Show colored output [default: auto] [possible values: always, auto, never]
+  -h, --help           Print help
 ```
 
 ### File
@@ -108,6 +111,14 @@ Implemented hash algorithms:
 * MD5 - [RFC 1321: The MD5 Message-Digest Algorithm](https://tools.ietf.org/html/rfc1321)
 * SHA-1 - [RFC 3174: US Secure Hash Algorithm 1 (SHA1)](https://tools.ietf.org/html/rfc3174)
 * SHA-2 family (SHA-224, SHA-256, SHA-386, SHA-512) - [FIPS PUB 180-4: Secure Hash Standard](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+
+## Feature flags
+
+### Options
+
+* `color`: Enables colored output.
+
+By default all of them are enabled.
 
 ## Disclaimer
 
