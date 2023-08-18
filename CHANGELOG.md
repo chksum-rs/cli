@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added `Target` enum to better handle output printing.
+- Added `#![forbid(unsafe_code)]` to forbid unsafe code.
 
 ### Fixed
 

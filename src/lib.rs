@@ -1,3 +1,5 @@
+#![forbid(unsafe_code)]
+
 use std::fmt::{self, Display, Formatter};
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
