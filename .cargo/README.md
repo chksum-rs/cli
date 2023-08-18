@@ -65,23 +65,35 @@ Options:
 $ chksum help sha2-224
 Calculate SHA-2 224 digest
 
-Usage: chksum sha2-224 <PATH>...
+Usage: chksum sha2-224 [OPTIONS] <PATH>...
 
 Arguments:
   <PATH>...  Path to file or directory
 
 Options:
-  -h, --help  Print help
+  -s, --stdin  Calculate digest from stdin
+  -h, --help   Print help
 ```
+
+### File
 
 ```shell
 $ chksum sha2-224 LICENSE
 LICENSE: 99258bca0d23c69388dd53412f1009132753b89459359a401a6ed158
 ```
 
+### Directory
+
 ```shell
 $ chksum sha1 src/
 src/: 03e4ae615c034f5db47c72bd5c6c9e5bf450a2bd
+```
+
+### Standard input
+
+```shell
+$ echo -n admin1 | chksum md5 --stdin
+<stdin>: e00cf25ad42683b3df678c61f42c6bda
 ```
 
 ## Library

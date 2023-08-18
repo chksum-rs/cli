@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed wrong link in `CHANGELOG.md`.
+- Fixed missing stdin examples in `README.md` and `.cargo/README.md`.
 
 ### Changed
 
