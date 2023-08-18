@@ -77,12 +77,12 @@ Options:
 
 ```shell
 $ chksum sha2-224 LICENSE
-99258bca0d23c69388dd53412f1009132753b89459359a401a6ed158        LICENSE
+LICENSE: 99258bca0d23c69388dd53412f1009132753b89459359a401a6ed158
 ```
 
 ```shell
 $ chksum sha1 src/
-598c9268d2078e12bc0c32ff40ebb8ee9f8351ea        src/
+src/: 03e4ae615c034f5db47c72bd5c6c9e5bf450a2bd
 ```
 
 ## Library

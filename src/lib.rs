@@ -87,11 +87,10 @@ where
     V: Digest,
 {
     match result {
-        Ok(digest) => {
-            writeln!(stdout, "{target}\t{digest:x}")
-        },
+        Ok(digest) => writeln!(stdout, "{target}: {digest:x}"),
         Err(error) => {
-            writeln!(stderr, "{target} - {error}")
+            let error = error.to_string().to_lowercase();
+            writeln!(stderr, "{target}: {error}")
         },
     }
 }
