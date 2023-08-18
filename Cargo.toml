@@ -20,7 +20,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 anyhow = "1.0.72"
-chksum = "0.2.0"
+chksum = "0.2.1"
 clap = { version = "4.3.19", features = ["cargo", "derive", "wrap_help", "unicode"] }
 colored = { version = "2.0.4", optional = true }
 exitcode = "1.1.2"
