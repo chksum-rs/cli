@@ -4,7 +4,18 @@ use std::sync::mpsc;
 use std::{process, thread};
 
 use anyhow::Result;
-use chksum::hash::{MD5, SHA1, SHA2_224, SHA2_256, SHA2_384, SHA2_512};
+#[cfg(feature = "md5")]
+use chksum::hash::MD5;
+#[cfg(feature = "sha1")]
+use chksum::hash::SHA1;
+#[cfg(feature = "sha2-224")]
+use chksum::hash::SHA2_224;
+#[cfg(feature = "sha2-256")]
+use chksum::hash::SHA2_256;
+#[cfg(feature = "sha2-384")]
+use chksum::hash::SHA2_384;
+#[cfg(feature = "sha2-512")]
+use chksum::hash::SHA2_512;
 use chksum::{chksum, Chksum, Error};
 #[cfg(feature = "color")]
 use chksum_cli::Color;
@@ -82,11 +93,17 @@ fn main() -> Result<()> {
     }
 
     let rc = match command.subcommand {
+        #[cfg(feature = "md5")]
         Subcommand::MD5 { args, options } => subcommand::<MD5>(&args, &options),
+        #[cfg(feature = "sha1")]
         Subcommand::SHA1 { args, options } => subcommand::<SHA1>(&args, &options),
+        #[cfg(feature = "sha2-224")]
         Subcommand::SHA2_224 { args, options } => subcommand::<SHA2_224>(&args, &options),
+        #[cfg(feature = "sha2-256")]
         Subcommand::SHA2_256 { args, options } => subcommand::<SHA2_256>(&args, &options),
+        #[cfg(feature = "sha2-384")]
         Subcommand::SHA2_384 { args, options } => subcommand::<SHA2_384>(&args, &options),
+        #[cfg(feature = "sha2-512")]
         Subcommand::SHA2_512 { args, options } => subcommand::<SHA2_512>(&args, &options),
     };
 

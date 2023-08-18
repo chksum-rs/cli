@@ -55,6 +55,7 @@ pub struct Command {
 #[derive(Debug, clap::Subcommand)]
 pub enum Subcommand {
     /// Calculate MD5 digest.
+    #[cfg(feature = "md5")]
     #[command(arg_required_else_help = true)]
     MD5 {
         #[command(flatten)]
@@ -63,6 +64,7 @@ pub enum Subcommand {
         options: Options,
     },
     /// Calculate SHA-1 digest.
+    #[cfg(feature = "sha1")]
     #[command(arg_required_else_help = true)]
     SHA1 {
         #[command(flatten)]
@@ -71,6 +73,7 @@ pub enum Subcommand {
         options: Options,
     },
     /// Calculate SHA-2 224 digest.
+    #[cfg(feature = "sha2-224")]
     #[command(arg_required_else_help = true)]
     SHA2_224 {
         #[command(flatten)]
@@ -79,6 +82,7 @@ pub enum Subcommand {
         options: Options,
     },
     /// Calculate SHA-2 256 digest.
+    #[cfg(feature = "sha2-256")]
     #[command(arg_required_else_help = true)]
     SHA2_256 {
         #[command(flatten)]
@@ -87,6 +91,7 @@ pub enum Subcommand {
         options: Options,
     },
     /// Calculate SHA-2 384 digest.
+    #[cfg(feature = "sha2-384")]
     #[command(arg_required_else_help = true)]
     SHA2_384 {
         #[command(flatten)]
@@ -95,6 +100,7 @@ pub enum Subcommand {
         options: Options,
     },
     /// Calculate SHA-2 512 digest.
+    #[cfg(feature = "sha2-512")]
     #[command(arg_required_else_help = true)]
     SHA2_512 {
         #[command(flatten)]

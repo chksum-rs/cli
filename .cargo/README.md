@@ -113,6 +113,16 @@ Implemented hash algorithms:
 
 ## Feature flags
 
+### Algorithms
+
+* `md5`: Enables MD5 hash algorithm.
+* `sha1`: Enables SHA-1 hash algorithm.
+* `sha2`: Enables SHA-2 hash family algorithms.
+  * `sha2-224`: Enables only SHA-2 224 hash algorithm.
+  * `sha2-256`: Enables only SHA-2 256 hash algorithm.
+  * `sha2-384`: Enables only SHA-2 384 hash algorithm.
+  * `sha2-512`: Enables only SHA-2 512 hash algorithm.
+
 ### Options
 
 * `color`: Enables colored output.
