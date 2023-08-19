@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed `stdin` option to conflicts only with `paths` arg.
+
 ### Changed
 
 - Changed usage from `name` to `value_name` for `paths` arg.

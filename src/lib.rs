@@ -113,14 +113,14 @@ pub enum Subcommand {
 #[derive(Debug, clap::Args)]
 pub struct Args {
     /// Path to file or directory.
-    #[arg(required = true, value_name = "PATH")]
+    #[arg(required = true, value_name = "PATH", conflicts_with = "stdin")]
     pub paths: Vec<PathBuf>,
 }
 
 #[derive(Debug, clap::Args)]
 pub struct Options {
     /// Calculate digest from stdin.
-    #[arg(short, long, default_value_t = false, exclusive = true)]
+    #[arg(short, long, default_value_t = false, conflicts_with = "paths")]
     pub stdin: bool,
 }
 
