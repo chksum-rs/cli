@@ -42,7 +42,7 @@ where
 }
 
 #[derive(Debug, clap::Parser)]
-#[command(version, about, long_about = None)]
+#[command(name = "chksum", version, about, long_about = None)]
 pub struct Command {
     #[command(subcommand)]
     pub subcommand: Subcommand,
