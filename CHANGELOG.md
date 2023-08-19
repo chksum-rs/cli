@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed usage from `name` to `value_name` for `paths` arg.
 
+### Removed
+
+- Removed `author` from command.
+
 ## [0.3.0] - 2023-08-18
 
 ### Added
