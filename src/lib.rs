@@ -113,7 +113,7 @@ pub enum Subcommand {
 #[derive(Debug, clap::Args)]
 pub struct Args {
     /// Path to file or directory.
-    #[arg(required = true, name = "PATH")]
+    #[arg(required = true, value_name = "PATH")]
     pub paths: Vec<PathBuf>,
 }
 
