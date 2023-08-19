@@ -1,6 +1,6 @@
 [package]
 name = "chksum-cli"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Konrad Goławski <konrad@golawski.it>"]
 edition = "2021"
 rust-version = "1.66.0"
