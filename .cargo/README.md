@@ -126,8 +126,9 @@ Implemented hash algorithms:
 ### Options
 
 * `color`: Enables colored output.
+* `unstable`: Enables unstable options.
 
-By default all of them are enabled.
+By default only `color` is enabled.
 
 ## Disclaimer
 

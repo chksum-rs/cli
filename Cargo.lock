@@ -165,9 +165,9 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "chksum"
-version = "0.2.1"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3467b3e957eea47de7cf1f9864b9a45309ecd8c6894afec6679514c38be7287e"
+checksum = "00e5d666d3b2f7b68fb54c8a492b4aea757ce147b2815358a5b6c45e6a9f24d6"
 dependencies = [
  "chksum-hash",
  "is-terminal",
@@ -203,9 +203,9 @@ dependencies = [
 
 [[package]]
 name = "chksum-hash"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3aedf30f8c768090e239caa6e111806fb06b180c9cbcebabe984f04487d29934"
+checksum = "6883bbf1ecf4736e5af31acd07b133d6595d2c431eda4106c8cf38f444a2208c"
 dependencies = [
  "anyhow",
  "chksum-build",
