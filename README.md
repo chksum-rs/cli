@@ -124,6 +124,8 @@ Implemented hash algorithms:
   * `sha2-384`: Enables only SHA-2 384 hash algorithm.
   * `sha2-512`: Enables only SHA-2 512 hash algorithm.
 
+By default all of them are enabled.
+
 ### Options
 
 * `color`: Enables colored output.
