@@ -9,6 +9,7 @@ pub enum Color {
 }
 
 impl Color {
+    #[must_use]
     pub fn as_str(&self) -> &'static str {
         match self {
             Self::Always => "always",

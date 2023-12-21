@@ -1,22 +1,21 @@
-use std::io::{stderr, stdin, stdout, StdinLock, Write};
-use std::path::PathBuf;
+use std::io::{stderr, stdin, stdout, Write};
 use std::sync::mpsc;
 use std::{process, thread};
 
 use anyhow::Result;
 #[cfg(feature = "md5")]
-use chksum::hash::MD5;
+use chksum::MD5;
 #[cfg(feature = "sha1")]
-use chksum::hash::SHA1;
+use chksum::SHA1;
 #[cfg(feature = "sha2-224")]
-use chksum::hash::SHA2_224;
+use chksum::SHA2_224;
 #[cfg(feature = "sha2-256")]
-use chksum::hash::SHA2_256;
+use chksum::SHA2_256;
 #[cfg(feature = "sha2-384")]
-use chksum::hash::SHA2_384;
+use chksum::SHA2_384;
 #[cfg(feature = "sha2-512")]
-use chksum::hash::SHA2_512;
-use chksum::{chksum, Chksum, Error};
+use chksum::SHA2_512;
+use chksum::{chksum, Hash};
 #[cfg(feature = "color")]
 use chksum_cli::Color;
 use chksum_cli::{exitcode, print_result, Args, Command, Options, Subcommand, Target};
@@ -25,7 +24,6 @@ use exitcode::{OK as EXITCODE_OK, USAGE as EXITCODE_USAGE};
 use rayon::prelude::{IntoParallelRefIterator, ParallelIterator};
 
 /// Exits process with given return code.
-#[inline]
 fn exit(code: i32) -> ! {
     let _ = stdout().lock().flush();
     let _ = stderr().lock().flush();
@@ -33,10 +31,9 @@ fn exit(code: i32) -> ! {
 }
 
 /// Handles subcommand execution.
-#[inline]
 fn subcommand<T>(args: &Args, options: &Options) -> i32
 where
-    T: for<'a> Chksum<&'a PathBuf, Error = Error> + for<'a> Chksum<StdinLock<'a>, Error = Error>,
+    T: Hash,
     T::Digest: 'static + Send,
 {
     let (tx, rx) = mpsc::sync_channel(1);
@@ -52,7 +49,7 @@ where
 
     let rc = if options.stdin {
         let handle = stdin().lock();
-        let result = chksum::<T, _>(handle);
+        let result = chksum::<T>(handle);
         let rc = exitcode(&result);
         let pair = (Target::Stdin, result);
         tx.send(pair).expect("Cannot send result to printer thread");
@@ -61,7 +58,7 @@ where
         args.paths
             .par_iter()
             .map(|path| {
-                let result = chksum::<T, _>(path);
+                let result = chksum::<T>(path);
                 let rc = exitcode(&result);
                 let pair = (path.into(), result);
                 tx.send(pair).expect("Cannot send result to printer thread");

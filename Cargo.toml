@@ -1,12 +1,12 @@
 [package]
 name = "chksum-cli"
-version = "0.3.2"
+version = "0.4.0"
 authors = ["Konrad Goławski <konrad@golawski.it>"]
 edition = "2021"
-rust-version = "1.66.0"
+rust-version = "1.70.0"
 description = "A simple checksum calculator."
 readme = ".cargo/README.md"
-repository = "https://github.com/ferric-bytes/chksum-cli"
+repository = "https://github.com/chksum-rs/cli"
 license = "MIT"
 keywords = ["checksum", "digest", "directory-checksum", "file-checksum", "hash"]
 categories = ["command-line-utilities", "cryptography", "filesystem"]
@@ -19,31 +19,28 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-anyhow = "1.0.72"
-chksum = "0.2.2"
-clap = { version = "4.3.19", features = ["cargo", "derive", "wrap_help", "unicode"] }
-colored = { version = "2.0.4", optional = true }
+anyhow = "1.0.76"
+chksum = { version = "0.3.0", default-features = false }
+clap = { version = "4.4.11", features = ["cargo", "derive", "wrap_help", "unicode"] }
+colored = { version = "2.1.0", optional = true }
 exitcode = "1.1.2"
 rayon = "1.7.0"
 
 [dev-dependencies]
 assert_cmd = { version = "2.0.12", features = ["color-auto"] }
 assert_fs = { version = "1.0.13", features = ["color-auto"] }
-thiserror = "1.0.44"
+thiserror = "1.0.51"
 
 [features]
 default = [
     # compilation
     "color",
     # algorithms
-    "md5",
-    "sha1",
-    "sha2",
+    "md5", "sha1", "sha2",
 ]
 
 # compilation
 color = ["colored"]
-unstable = ["chksum/unstable"]
 
 # algorithms
 md5 = ["chksum/md5"]

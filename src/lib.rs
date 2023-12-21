@@ -7,13 +7,13 @@ use std::fmt::{self, Display, Formatter};
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 
-use chksum::hash::Digest;
-use chksum::Result;
-#[cfg(feature = "color")]
-pub use color::Color;
+use chksum::{Digest, Error};
 #[cfg(feature = "color")]
 use colored::Colorize;
 use exitcode::{IOERR as EXITCODE_IOERR, OK as EXITCODE_OK};
+
+#[cfg(feature = "color")]
+pub use crate::color::Color;
 
 #[derive(Clone, Debug)]
 pub enum Target {
@@ -34,7 +34,6 @@ impl<T> From<T> for Target
 where
     T: AsRef<Path>,
 {
-    #[inline]
     fn from(value: T) -> Self {
         let value = value.as_ref();
         Self::Path(value.to_path_buf())
@@ -125,15 +124,14 @@ pub struct Options {
 }
 
 /// Prints result to stdout or stderr.
-#[inline]
-pub fn print_result<T, U, V>(stdout: &mut T, stderr: &mut U, target: Target, result: Result<V>) -> io::Result<()>
-where
-    T: Write,
-    U: Write,
-    V: Digest,
-{
+pub fn print_result(
+    stdout: &mut impl Write,
+    stderr: &mut impl Write,
+    target: Target,
+    result: Result<impl Digest, Error>,
+) -> io::Result<()> {
     match result {
-        Ok(digest) => writeln!(stdout, "{target}: {digest:x}"),
+        Ok(digest) => writeln!(stdout, "{target}: {digest}"),
         Err(error) => {
             let error = error.to_string().to_lowercase();
             let error = format!("{target}: {error}");
@@ -145,8 +143,7 @@ where
 }
 
 /// Turns result to exitcode.
-#[inline]
-pub fn exitcode<T>(result: &Result<T>) -> i32
+pub fn exitcode<T>(result: &Result<T, Error>) -> i32
 where
     T: Digest,
 {
@@ -162,8 +159,7 @@ mod tests {
     use anyhow::Result;
     use assert_fs::prelude::PathChild;
     use assert_fs::TempDir;
-    use chksum::chksum;
-    use chksum::hash::MD5;
+    use chksum::{chksum, MD5};
 
     use super::*;
 
@@ -171,7 +167,7 @@ mod tests {
     fn exitcode_ok() -> Result<()> {
         let tmpdir = TempDir::new()?;
 
-        let result = chksum::<MD5, _>(tmpdir.path());
+        let result = chksum::<MD5>(tmpdir.path());
         assert_eq!(exitcode(&result), EXITCODE_OK);
 
         Ok(())
@@ -182,7 +178,7 @@ mod tests {
         let tmpdir = TempDir::new()?;
         let child = tmpdir.child("child");
 
-        let result = chksum::<MD5, _>(child.path());
+        let result = chksum::<MD5>(child.path());
         assert_eq!(exitcode(&result), EXITCODE_IOERR);
 
         Ok(())
