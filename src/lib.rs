@@ -189,7 +189,7 @@ mod tests {
     use anyhow::Result;
     use assert_fs::prelude::PathChild;
     use assert_fs::TempDir;
-    use chksum::{chksum, MD5};
+    use chksum::MD5;
 
     use super::*;
 
