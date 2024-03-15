@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Split single subcommand structure into multiple substructures.
 - Updated dependencies in `Cargo.lock`.
+- Updated MSRV.
 
 ## [0.4.1] - 2023-12-21
 
