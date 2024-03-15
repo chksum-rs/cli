@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Resolved issue with multiple dependencies.
+
 ### Changed
 
 - Split single subcommand structure into multiple substructures.
