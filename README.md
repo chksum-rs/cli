@@ -91,7 +91,7 @@ LICENSE: 99258bca0d23c69388dd53412f1009132753b89459359a401a6ed158
 
 ```shell
 $ chksum sha1 src/
-src/: 03e4ae615c034f5db47c72bd5c6c9e5bf450a2bd
+src/: 65393d65360ae9915e50224ee0f49fa58cff9abd
 ```
 
 ### Standard Input Processing
