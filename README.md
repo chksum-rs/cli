@@ -84,7 +84,7 @@ Options:
 
 ```shell
 $ chksum sha2-224 LICENSE
-LICENSE: 99258bca0d23c69388dd53412f1009132753b89459359a401a6ed158
+LICENSE: f2c3541b130a29abc5400732a573ba11a3a30a09435d3c1f15a83f77
 ```
 
 ### Directory Processing
