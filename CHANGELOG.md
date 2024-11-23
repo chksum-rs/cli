@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Resolved issue with multiple dependencies.
+- Fixed broken links to [deps.rs](https://deps.rs/).
 
 ### Changed
 

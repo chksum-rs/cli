@@ -3,7 +3,7 @@
 [![GitHub](https://img.shields.io/badge/github-chksum--rs%2Fcli-24292e?style=flat-square&logo=github "GitHub")](https://github.com/chksum-rs/cli)
 [![Build](https://img.shields.io/github/actions/workflow/status/chksum-rs/cli/rust.yml?branch=master&style=flat-square&logo=github "Build")](https://github.com/chksum-rs/cli/actions/workflows/rust.yml)
 [![MSRV](https://img.shields.io/badge/MSRV-1.74.0-informational?style=flat-square "MSRV")](https://github.com/chksum-rs/cli/blob/master/Cargo.toml)
-[![deps.rs](https://deps.rs/crate/chksum/0.4.1/status.svg?style=flat-square "deps.rs")](https://deps.rs/crate/chksum/0.4.1)
+[![deps.rs](https://deps.rs/crate/chksum-cli/0.4.1/status.svg?style=flat-square "deps.rs")](https://deps.rs/crate/chksum-cli/0.4.1)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg?style=flat-square "unsafe forbidden")](https://github.com/rust-secure-code/safety-dance)
 [![LICENSE](https://img.shields.io/github/license/chksum-rs/cli?style=flat-square "LICENSE")](https://github.com/chksum-rs/cli/blob/master/LICENSE)
 
